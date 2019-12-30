@@ -72,3 +72,47 @@ good
 ['good']
 2 [('good', 'JJ')]
 good
+
+TEXTBLOB
+
+FINAL
+
+from nltk.corpus import stopwords                                              //IMPORTING STOPWORDS
+from textblob import TextBlob                                                  //TEXTBLOB FOR SENTIMENT ANALYSIS
+stops = set(stopwords.words("english")) 
+import pandas as pd
+data=pd.read_csv("form2.csv")
+from nltk.tokenize import RegexpTokenizer
+tokenizer = RegexpTokenizer(r'\w+')
+
+
+
+
+from nltk.tokenize import word_tokenize
+for i in range(row):
+    text=nltk.word_tokenize(d[i][0])
+    
+    meaningful_words = [w for w in text if not w in stops]
+    print(meaningful_words)
+    blob=TextBlob(str(meaningful_words))
+    print(len(nltk.pos_tag(text)),nltk.pos_tag(meaningful_words))
+    true_list=nltk.pos_tag(meaningful_words)
+    for j in range(0,len(true_list)):
+        if true_list[j][1] == 'JJ':
+            print(true_list[j][0])
+            print(blob.sentiment)
+  //OUTPUT
+
+['nice', 'sir']
+2 [('nice', 'JJ'), ('sir', 'NN')]
+nice
+Sentiment(polarity=0.6, subjectivity=1.0)
+['good']
+2 [('good', 'JJ')]
+good
+Sentiment(polarity=0.7, subjectivity=0.6000000000000001)
+['good']
+2 [('good', 'JJ')]
+good
+Sentiment(polarity=0.7, subjectivity=0.6000000000000001)
+            
